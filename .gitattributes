@@ -1,3 +1,4 @@
 dataset/Foursquare.csv filter=lfs diff=lfs merge=lfs -text
 dataset/TDrive_new.csv filter=lfs diff=lfs merge=lfs -text
 dataset/Syn[[:space:]]datasets/*.csv filter=lfs diff=lfs merge=lfs -text
+dataset/*.csv filter=lfs diff=lfs merge=lfs -text
