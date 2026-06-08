@@ -131,7 +131,7 @@ The code is implemented in Python. Please install the required dependencies befo
 
 
 
-For large datasets, some statistical results are pre-computed and stored in:
+For large datasets, some true statistical results are pre-computed and stored in:
 
 
 
