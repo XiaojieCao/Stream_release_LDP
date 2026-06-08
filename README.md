@@ -142,12 +142,5 @@ Methods/statistical result/
 These files can be directly used by the corresponding methods to improve experimental efficiency.
 
 
-## Notes
-
-* Only small datasets and necessary files are uploaded directly for convenience.
-* Large-scale datasets should be downloaded according to the links or instructions provided in the paper.
-* Synthetic datasets can be generated using the scripts in `dataset/Syn datasets/`.
-* `TDrive_new.csv` is the processed version of the original TDrive dataset.
-* Pre-computed results for large datasets are stored in `Methods/statistical result/`.
 
 
