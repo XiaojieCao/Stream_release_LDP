@@ -57,66 +57,6 @@ Stream data release LDP/
 
 
 
-
-
-## Datasets
-
-
-
-The dataset/ directory contains all datasets used in the experiments.
-
-
-
-* Syn datasets/: synthetic datasets generated for experimental evaluation.
-
-* AirQualityUCI.csv: air quality dataset.
-
-* Foursquare.csv: Foursquare dataset.
-
-* TDrive.csv: original TDrive dataset.
-
-* TDrive_new.csv: processed TDrive dataset used in the experiments.
-
-* Unemployment.csv: unemployment dataset.
-
-* Volume.csv: volume dataset.
-
-* data_deal.py: script for dataset preprocessing.
-
-
-
-## Methods
-
-
-
-The Methods/ directory contains all methods implemented and evaluated in this project.
-
-
-
-The included methods are:
-
-
-
-* AGS.py
-
-* CAPP.py
-
-* Fle_BA.py
-
-* LBA.py
-
-* MPS.py
-
-* Naive_Sample.py
-
-* Naive_Uniform.py
-
-
-
-The folder statistical result/ stores pre-computed statistical results for relatively large datasets. These files are prepared in advance to reduce the cost of repeated computation during experiments.
-
-
-
 ## Environment
 
 
