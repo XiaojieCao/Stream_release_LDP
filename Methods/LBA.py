@@ -213,12 +213,13 @@ def LBA_multi(df, timestamp,epsilon_1, epsilon_2, domain, w, column):
                 t_absorb = t - (last_pub_time + t_N)
                 epsilon_t = (epsilon_2 / w) * min(t_absorb, w)
                 # 计算dis
-                var, var_extra = Var(domain, epsilon_t, len(df_t))
+                var, var_extra = Var(domain, epsilon_2 / w, len(df_t))
                 cur_data = noise_result_1[t]
                 pre_data = noise_result_2[t - 1]
                 dis = np.sum(np.square(np.array(cur_data) - np.array(pre_data))) / len(domain) - (var + var_extra)
 
-                err = var + var_extra
+                var_t, var_extra_t = Var(domain, epsilon_t, len(df_t))
+                err = var_t + var_extra_t
                 if dis > err:
                     count_vector_noise = perturb_value(values_t, domain, epsilon_t)
                     noise_result_2.append(count_vector_noise)
@@ -298,20 +299,20 @@ def mae_rangequery_multi(df, epsilon, w):
 
     # Foursquare Country code
     # syn2 and syn3 Value
-    column = 'Value'
+    column = 'LID'
     timestamp = df['Time'].unique().tolist()
     domain = sorted(df[column].unique().tolist())
     UID = df['User ID'].unique()
-    domain_min, domain_max = min(domain), max(domain)
-    # domain_min, domain_max = 0, len(domain)
-    df_real = pd.read_json('statistical result/Syn3.json')
+    # domain_min, domain_max = min(domain), max(domain)
+    domain_min, domain_max = 0, len(domain)
+    df_real = pd.read_json('statistical result/Tdrive.json')
     real_result = df_real['real frequency'].values.tolist()
 
     epsilon_1 = epsilon_2 = epsilon / 2
     noise_result = LBA_multi(df, timestamp,epsilon_1, epsilon_2, domain, w, column)
 
     MAE = 0
-    queries = generate_fixed_length_queries(domain_min, domain_max, query_len=10, query_num=1000, seed=None)
+    queries = generate_fixed_length_queries(domain_min, domain_max, query_len=10, query_num=10, seed=None)
     for q in tqdm(queries):
         mae = 0
         for t in range(0,len(timestamp)):
@@ -336,11 +337,14 @@ if __name__ == "__main__":
     # Synthetic2 Synthetic3 Value
     # TDrive_new LID
 
-    Path = 'E:\\Code\\Stream data release LDP\\dataset\\Syn datasets\\'
-    df = pd.read_csv(Path + 'Synthetic3.csv', encoding='unicode_escape')
-    epsilon_list = [0.5, 1, 1.5, 2, 2.5, 3]
-    # w_list = [60, 80, 100, 120]
-
+    Path = 'E:\\Code\\Stream_data_release_LDP\\dataset\\'
+    df = pd.read_csv(Path + 'TDrive_new.csv', encoding='unicode_escape')
+    epsilon_list = [0.5, 1.0, 1.5, 2.0, 2.5, 3.0]
+    w_list = [40, 60, 80, 100, 120]
+    # for w in w_list:
+    #     print('w:', w)
+    #     MSE = mean_square_error_multi(3, df, 2, w)
+    #     print('mean square error:', MSE)
     # range query
     for epsilon in epsilon_list:
         print('epsilon', epsilon)
